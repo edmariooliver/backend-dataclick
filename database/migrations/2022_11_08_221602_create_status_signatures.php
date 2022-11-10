@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('status_users', function (Blueprint $table) {
+        Schema::create('status_signatures', function (Blueprint $table) {
             $table->id();
+            $table->text("description");
             $table->timestamps();
         });
     }

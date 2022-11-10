@@ -2,9 +2,6 @@
 
 namespace App\Http\Controllers\Api\User;
 
-use App\Exceptions\{
-    UserNotFoundException
-};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\User\DestroyUserService;

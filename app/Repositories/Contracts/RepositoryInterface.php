@@ -2,11 +2,11 @@
 
 namespace App\Repositories\Contracts;
 
-interface UserRepositoryInterface
+interface RepositoryInterface
 {
     public function findById($id);
     public function findAll();
     public function destroy(int $id);
-    public function update(int $id, array $task);
-    public function create(array $task);
+    public function update(int $id, array $array);
+    public function create(array $array);
 }

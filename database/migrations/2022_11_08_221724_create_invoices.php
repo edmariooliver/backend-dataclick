@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId("id_signature")->constrained("signatures");
-            $table->foreignId("status_invoice")->constrained("status_invoices");
+            $table->date("due_date");
             $table->timestamps();
         });
     }

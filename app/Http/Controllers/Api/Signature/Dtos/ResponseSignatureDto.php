@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api\User\Dtos;
-use App\Dto\DtoInterface; 
+namespace App\Http\Controllers\Api\Signature\Dtos;
 
-class ResponseUserDto
+class SignatureDto
 {
     public $id;
     public $name;
-    public $email;
 
     public function __construct(Object $object)
     {

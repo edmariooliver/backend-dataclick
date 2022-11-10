@@ -21,7 +21,7 @@ class BaseValidator
     /**
      * Run validate
      */
-    static function run(DtoInterface $taskDto, String $action = null)
+    static function run($taskDto, String $action = null)
     {
         $action = strtoupper($action);
         return (in_array($action, static::$actions)) ? static::runValidate($taskDto, $action): throw new ActionNotFoundException("Invalid action");
@@ -32,7 +32,7 @@ class BaseValidator
      * 
      * @return Illuminate\Validation\Validator $validator
      */
-    static function runValidate(DtoInterface $taskDto, String $action = null) 
+    static function runValidate($taskDto, String $action = null) 
     {
         $method = "validateData".ucfirst(strtolower($action));
         return static::$method($taskDto);

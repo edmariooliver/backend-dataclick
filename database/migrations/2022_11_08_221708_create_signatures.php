@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('signatures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_user")->constrained("users");
-            $table->foreignId("id_club")->constrained("clubs");
+            $table->foreignId("id_user")->constrained("users")->onDelete("cascade");
+            $table->foreignId("id_club")->constrained("clubs")->onDelete("cascade");
+            $table->foreignId("status_signature")->constrained("status_signatures");
             $table->timestamps();
         });
     }

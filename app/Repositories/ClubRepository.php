@@ -3,22 +3,22 @@
 namespace App\Repositories;
 
 use App\Repositories\Contracts\RepositoryInterface;
-use App\Models\User;
+use App\Models\Club;
 
-class UserRepository implements RepositoryInterface
+class ClubRepository implements RepositoryInterface
 {
     
     /**
-     * @var \App\Models\User $entity
+     * @var \App\Models\Club $entity
      */
     protected $entity;
 
     /**
      * 
      */
-    public function __construct(User $user)
+    public function __construct(Club $Club)
     {
-        $this->entity = $user;
+        $this->entity = $Club;
     }
 
     /**
@@ -48,19 +48,19 @@ class UserRepository implements RepositoryInterface
     /**
      * 
      */
-    public function update(int $id, Array $user)
+    public function update(int $id, Array $Club)
     {
-        if($this->entity->find($id) == NULl) {
+        if($this->entity->find($id) == NULL) {
             return false;
         }
-        return $this->entity->where("id", $id)->update($user);
+        return $this->entity->where("id", $id)->update($Club);
     }
 
     /**
      * 
      */
-    public function create(array $user)    
+    public function create(array $Club)    
     {
-        return $this->entity->create($user);
+        return $this->entity->create($Club);
     }
 }

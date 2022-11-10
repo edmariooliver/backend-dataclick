@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Api\User\Dtos;
-use App\Dto\DtoInterface; 
+namespace App\Http\Controllers\Api\Signature\Dtos;
 
-class UserDto
+class SignatureDto
 {
     public $name;
     public $email;
