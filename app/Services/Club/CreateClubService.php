@@ -20,7 +20,7 @@ class CreateClubService
     }
 
     /**
-     * Create new task
+     * 
      */
     public function execute(ClubDto $clubDto)
     {

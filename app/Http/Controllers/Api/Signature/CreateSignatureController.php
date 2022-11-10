@@ -20,6 +20,6 @@ class CreateSignatureController extends Controller
     {
         $dto = new SignatureDto($request);
         $this->service->execute($dto);
-        return Response()->json([], 201);
+        return Response()->json("ok", 201);
     }
 }

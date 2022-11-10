@@ -20,6 +20,6 @@ class CreateClubController extends Controller
     {
         $dto = new ClubDto($request);
         $this->service->execute($dto);
-        return Response()->json([], 201);
+        return Response()->json("ok", 201);
     }
 }

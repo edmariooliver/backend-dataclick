@@ -20,6 +20,6 @@ class CreateUserController extends Controller
     {
         $dto = new UserDto($request);
         $this->service->execute($dto);
-        return Response()->json([], 201);
+        return Response()->json("ok", 201);
     }
 }

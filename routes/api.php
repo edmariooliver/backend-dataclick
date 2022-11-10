@@ -27,6 +27,11 @@ use App\Http\Controllers\Api\Signature\{
     CreateSignatureController
 };
 
+use App\Http\Controllers\Api\Invoice\{
+    PayController,
+
+};
+
 // ===============================================
 
 Route::post('auth/login',   [LoginController::class, "index"]);
@@ -52,3 +57,5 @@ Route::get("signature",              [GetSignatureController::class, "findAll"])
 Route::patch("signature/{id}",       [UpdateSignatureController::class, "update"]);
 Route::delete("signature/{id}",      [DestroySignatureController::class, "destroy"]);
 Route::post("signature",             [CreateSignatureController::class, "create"]);
+
+Route::post("invoice/pay/{id}",      [PayController::class, "pay"]);

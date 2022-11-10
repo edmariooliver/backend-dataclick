@@ -30,7 +30,7 @@ class BaseValidator
     /**
      * Validates the data for update a task
      * 
-     * @return Illuminate\Validation\Validator $validator
+     * @return \Illuminate\Validation\Validator $validator
      */
     static function runValidate($taskDto, String $action = null) 
     {

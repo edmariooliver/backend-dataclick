@@ -5,37 +5,56 @@ namespace App\Services\Signature;
 use App\Exceptions\InvalidSignatureDataException;
 use App\Repositories\SignatureRepository;
 use App\Http\Controllers\Api\Signature\Dtos\SignatureDto;
+use App\Repositories\InvoiceRepository;
 use App\Validators\SignatureValidator;
-use Illuminate\Support\Facades\Hash;
+use App\Utils\InvoicesUtils;
 
 class CreateSignatureService
 {
-    protected SignatureRepository $repository;
+    protected $signatureRepository;
+    protected $invoiceRepository;
 
     /**
      * 
      */
-    public function __construct(SignatureRepository $SignatureRepository)
+    public function __construct(SignatureRepository $signatureRepository, InvoiceRepository $invoiceRepository)
     {
-        $this->repository = $SignatureRepository;
+        $this->signatureRepository = $signatureRepository;
+        $this->invoiceRepository  = $invoiceRepository;
     }
 
     /**
-     * Create new task
+     * 
      */
-    public function execute(SignatureDto $SignatureDto)
+    public function execute(SignatureDto $signatureDto)
     {
-        $validator = SignatureValidator::run($SignatureDto, "CREATE");
+        $validator = SignatureValidator::run($signatureDto, "CREATE");
 
-        $Signature = [
-            "name"  => $SignatureDto->name,
-            "email" => $SignatureDto->email,
-            "password"  => Hash::make($SignatureDto->password),
+        $signature = [
+            "id_user"  => $signatureDto->idUser,
+            "id_club" => $signatureDto->idClub,
+            "status_signature" => 1
         ];
         
+        if ($this->signatureRepository->findByUserAndClub($signatureDto->idUser, $signatureDto->idClub))
+        {
+            throw new InvalidSignatureDataException("Este usuário já possui uma assinatura com o clube!");
+        }
+
         /**
-         * @var Illuminate\Validation\Validator $validator
+         * @var \Illuminate\Validation\Validator $validator
          */
-        return $validator->fails() ? throw new InvalidSignatureDataException($validator->messages()) : $this->repository->create($Signature); 
+        if($validator->fails()) {
+            throw new InvalidSignatureDataException($validator->messages());
+        }
+
+        $signatureResponse = $this->signatureRepository->create($signature);
+
+        if($signatureResponse) {
+            $invoices = InvoicesUtils::generateInvoices($signatureResponse->id);
+            foreach($invoices as $invoice) {
+                $this->invoiceRepository->create($invoice);
+            }
+        }
     }
 }

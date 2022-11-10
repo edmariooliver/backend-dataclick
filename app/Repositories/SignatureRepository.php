@@ -45,6 +45,7 @@ class SignatureRepository implements RepositoryInterface
             ->join("clubs", "signatures.id_club", "clubs.id")
             ->join("status_signatures", "status_signatures.id", "signatures.status_signature")
             ->select("signatures.id", "users.name as user", "clubs.name as club", "status_signatures.description as status")
+            ->orderBy("signatures.id", "DESC")
             ->get();
     }
 
@@ -73,5 +74,16 @@ class SignatureRepository implements RepositoryInterface
     public function create(array $Signature)    
     {
         return $this->entity->create($Signature);
+    }
+
+    /**
+     * 
+     */
+    public function findByUserAndClub(Int $idUser, Int $clubId)
+    {
+        return $this->entity
+            ->where("id_user", $idUser)
+            ->where("id_club", $clubId)
+            ->first();
     }
 }

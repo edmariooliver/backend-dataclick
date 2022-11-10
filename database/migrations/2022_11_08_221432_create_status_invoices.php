@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('invoices', function (Blueprint $table) {
+        Schema::create('status_invoices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_signature")->constrained("signatures")->onDelete("cascade");
-            $table->date("due_date");
-            $table->foreignId("status")->constrained("status_invoices");
+            $table->text("description");
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices');
+        Schema::dropIfExists('status_invoices');
     }
 };

@@ -4,21 +4,20 @@ namespace App\Services\Signature;
 
 use App\Exceptions\SignatureNotFoundException;
 use App\Repositories\SignatureRepository;
-use App\Models\Signature;
+use App\Repositories\InvoiceRepository;
 
 class GetSignatureService
 {
+    protected $signatureRepository;
+    protected $invoiceRepository;
+
     /**
      * 
      */
-    protected SignatureRepository $repository;
-
-    /**
-     * @param SignatureRepository $signatureRepository
-     */
-    public function __construct(SignatureRepository $signatureRepository)
+    public function __construct(SignatureRepository $signatureRepository, InvoiceRepository $invoiceRepository)
     {
-        $this->repository = $signatureRepository;
+        $this->signatureRepository = $signatureRepository;
+        $this->invoiceRepository   = $invoiceRepository;
     }
 
     /**
@@ -40,16 +39,22 @@ class GetSignatureService
      */
     public function findAll()
     {
-        $signatures = $this->repository->findAll();
+        $signatures = $this->signatureRepository->findAll();
         return $signatures;
     }
     
     /**
      * get Signature by id 
-     * @return Signature
+     * @return Array
      */
     public function findById(int $id)
     {
-        return $this->repository->findById($id);
+        $invoices = $this->invoiceRepository->findByIdSignature($id);
+        $siganture = $this->signatureRepository->findById($id);
+
+        if($siganture == NULL) {
+            throw new SignatureNotFoundException();
+        }
+        return [$siganture, ["invoices" => $invoices]];
     }
 }

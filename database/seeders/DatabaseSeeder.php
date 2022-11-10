@@ -75,5 +75,16 @@ class DatabaseSeeder extends Seeder
         ]);
 
         
+        DB::table('status_invoices')->insert([
+            "description" => "PENDENTE"
+        ]);
+
+        DB::table('status_invoices')->insert([
+            "description" => "PAGO"
+        ]);
+
+        DB::table('status_invoices')->insert([
+            "description" => "VENCIDO"
+        ]);
     }
 }

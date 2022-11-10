@@ -21,7 +21,7 @@ class CreateUserService
     }
 
     /**
-     * Create new task
+     * 
      */
     public function execute(UserDto $userDto)
     {
@@ -34,7 +34,7 @@ class CreateUserService
         ];
         
         /**
-         * @var Illuminate\Validation\Validator $validator
+         * @var \Illuminate\Validation\Validator $validator
          */
         return $validator->fails() ? throw new InvalidUserDataException($validator->messages()) : $this->repository->create($user); 
     }
