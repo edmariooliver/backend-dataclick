@@ -9,17 +9,17 @@ class DestroyClubService
 {
     protected ClubRepository $repository;
 
-    public function __construct(ClubRepository $ClubRepository)
+    public function __construct(ClubRepository $clubRepository)
     {
-        $this->repository = $ClubRepository;
+        $this->repository = $clubRepository;
     }
 
     public function execute($id)
     {
-        $Clubs = $this->repository->findByid($id);
-        if($Clubs == NULL) {
+        $clubs = $this->repository->findByid($id);
+        if($clubs == NULL) {
             throw new ClubNotFoundException();
         }
-        $this->repository->destroy($Clubs->id);
+        $this->repository->destroy($clubs->id);
     }
 }

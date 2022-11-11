@@ -37,9 +37,6 @@ class UpdateClubService
             $clubArray["name"] = $clubDto->name;
         }
 
-        /**
-         * @var \Illuminate\Validation\Validator $validator
-         */
         if($validator->fails()) {
             throw new InvalidClubDataException($validator->messages());
         }
@@ -49,10 +46,5 @@ class UpdateClubService
         }else{
             throw new ClubNotFoundException();
         }
-    }
-
-    public function response() 
-    {
-        echo "return ";
     }
 }
