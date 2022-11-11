@@ -41,9 +41,6 @@ class CreateSignatureService
             throw new InvalidSignatureDataException("Este usuário já possui uma assinatura com o clube!");
         }
 
-        /**
-         * @var \Illuminate\Validation\Validator $validator
-         */
         if($validator->fails()) {
             throw new InvalidSignatureDataException($validator->messages());
         }
