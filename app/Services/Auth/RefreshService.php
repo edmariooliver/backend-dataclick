@@ -11,5 +11,3 @@ class RefreshService
         return JWTUtils::makeToken(auth("api")->refresh());
     }
 }
-
-
