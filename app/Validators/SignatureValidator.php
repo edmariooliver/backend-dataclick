@@ -48,9 +48,13 @@ class SignatureValidator extends BaseValidator
         $validators = [];
         $signatureArray  = [];
 
-        if(!is_null($signatureDto->name)) {
-            $validators["name"] = "max:255|min:2";
-            $signatureArray["name"]  = $signatureDto->name;
+        if(!is_null($signatureDto->idUser)) {
+            $validators["id_user"] = 'required|integer|exists:App\Models\User,id';
+            $signatureArray["id_user"]  = $signatureDto->idUser;
+        }
+        if(!is_null($signatureDto->idUser)) {
+            $validators["id_club"] = 'required|integer|exists:App\Models\Club,id';
+            $signatureArray["id_club"]  = $signatureDto->idClub;
         }
         $validator = Validator::make($signatureArray, $validators);
 
