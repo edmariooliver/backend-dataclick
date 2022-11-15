@@ -86,4 +86,14 @@ class SignatureRepository implements RepositoryInterface
             ->where("id_club", $clubId)
             ->first();
     }
+
+    /**
+     * 
+     */
+    public function findByClubId(Int $clubId)
+    {
+        return $this->entity
+            ->where("id_club", $clubId)
+            ->first();
+    }
 }

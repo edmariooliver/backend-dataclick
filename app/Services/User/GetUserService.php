@@ -42,7 +42,7 @@ class GetUserService
     
     /**
      * get user by id 
-     * @return User
+     * @return 
      */
     public function findById(int $id)
     {

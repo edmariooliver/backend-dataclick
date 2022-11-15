@@ -4,18 +4,21 @@ namespace App\Services\Club;
 
 use App\Exceptions\ClubNotFoundException;
 use App\Repositories\ClubRepository;
-use App\Models\Club;
+use App\Repositories\SignatureRepository;
 
 class GetClubService
 {
-    protected ClubRepository $repository;
+    protected ClubRepository $clubRepository;
+    protected SignatureRepository $signatureRepository;
+
 
     /**
      * @param ClubRepository $ClubRepository
      */
-    public function __construct(ClubRepository $clubRepository)
+    public function __construct(ClubRepository $clubRepository, SignatureRepository $signatureRepository)
     {
-        $this->repository = $clubRepository;
+        $this->clubRepository = $clubRepository;
+        $this->signatureRepository = $signatureRepository;
     }
 
     /**
@@ -37,16 +40,18 @@ class GetClubService
      */
     public function findAll()
     {
-        $clubs = $this->repository->findAll();
+        $clubs = $this->clubRepository->findAll();
         return $clubs;
     }
     
     /**
      * get Club by id 
-     * @return Club
+     * @return Array<Club>
      */
     public function findById(int $id)
     {
-        return $this->repository->findById($id);
+        
+        $club = $this->clubRepository->findById($id);
+        return [$club, ['signatures' => $this->signatureRepository->findByClubId($id)]];
     }
 }
