@@ -11,7 +11,6 @@ class GetClubService
     protected ClubRepository $clubRepository;
     protected SignatureRepository $signatureRepository;
 
-
     /**
      * @param ClubRepository $ClubRepository
      */
