@@ -3,18 +3,21 @@
 namespace App\Services\User;
 
 use App\Exceptions\UserNotFoundException;
+use App\Repositories\SignatureRepository;
 use App\Repositories\UserRepository;
 
 class GetUserService
 {
-    protected UserRepository $repository;
+    protected UserRepository $userRepository;
+    protected SignatureRepository $signatureRepository;
 
     /**
      * @param UserRepository $userRepository
      */
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, SignatureRepository $signatureRepository)
     {
-        $this->repository = $userRepository;
+        $this->userRepository = $userRepository;
+        $this->signatureRepository = $signatureRepository;
     }
 
     /**
@@ -36,7 +39,7 @@ class GetUserService
      */
     public function findAll()
     {
-        $users = $this->repository->findAll();
+        $users = $this->userRepository->findAll();
         return $users;
     }
     
@@ -46,6 +49,11 @@ class GetUserService
      */
     public function findById(int $id)
     {
-        return $this->repository->findById($id);
+        return [
+            $this->userRepository->findById($id), 
+                [
+                "signatures" => $this->signatureRepository->findByUserId($id)
+                ]
+            ];
     }
 }

@@ -99,4 +99,17 @@ class SignatureRepository implements RepositoryInterface
             ->select("signatures.*", "status_signatures.description as status_signature", "users.name as username")
             ->get();
     }
+
+    /**
+     * 
+     */
+    public function findByUserId(Int $userId)
+    {
+        return $this->entity
+            ->where("id_club", $userId)
+            ->join("clubs", "signatures.id_club", "clubs.id")
+            ->join("status_signatures", "status_signatures.id", "signatures.status_signature")
+            ->select("signatures.*", "status_signatures.description as status_signature", "clubs.name as clubname")
+            ->get();
+    }
 }

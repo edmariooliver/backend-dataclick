@@ -12,7 +12,7 @@ class GetClubService
     protected SignatureRepository $signatureRepository;
 
     /**
-     * @param ClubRepository $ClubRepository
+     * @param ClubRepository $clubRepository
      */
     public function __construct(ClubRepository $clubRepository, SignatureRepository $signatureRepository)
     {
@@ -49,7 +49,6 @@ class GetClubService
      */
     public function findById(int $id)
     {
-        
         $club = $this->clubRepository->findById($id);
         return [$club, ['signatures' => $this->signatureRepository->findByClubId($id)]];
     }
