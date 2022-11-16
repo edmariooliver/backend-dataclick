@@ -37,23 +37,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('clubs')->insert([
-            "name" => "Marinho FC"
+            "name" => "Marinho FC",
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('clubs')->insert([
-            "name" => "Calvos FC"
+            "name" => "Calvos FC",
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('clubs')->insert([
-            "name" => "Team Holyfield"
+            "name" => "Team Holyfield",
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('clubs')->insert([
-            "name" => "Team Todo Duro"
+            "name" => "Team Todo Duro",
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('clubs')->insert([
-            "name" => "Team Todo Duro"
+            "name" => "Team Todo Mole",
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('signatures')->insert([
