@@ -18,7 +18,8 @@ use App\Http\Controllers\Auth\{
     LoginController,
     RefreshController,
     MeController,
-    LogoutController
+    LogoutController,
+    RegisterController
 };
 use App\Http\Controllers\Api\Signature\{
     GetSignatureController,
@@ -39,6 +40,7 @@ Route::post("user",         [CreateUserController::class, "create"]);
 Route::post('logout',       [LogoutController::class, "index"]);
 Route::post('refresh',      [RefreshController::class, "index"]);
 Route::post('me',           [MeController::class, "index"]);
+Route::post('register',     [RegisterController::class, "create"]);
 
 Route::get("user/{id}",         [GetUserController::class, "findById"]);
 Route::get("user",              [GetUserController::class, "findAll"]);

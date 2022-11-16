@@ -11,7 +11,7 @@ use App\Validators\BaseValidator;
  * after that you must name the method in the same pattern as those that 
  * already exist starting with validateData followed by the action validateDataAction()
  */
-class UserValidator extends BaseValidator
+class AdminValidator extends BaseValidator
 {
     /**
      * @var Array $actions
@@ -28,11 +28,13 @@ class UserValidator extends BaseValidator
         $userArray = [
             "name"      => $userDto->name,
             "email"     => $userDto->email,
+            "password"  => $userDto->password
         ];
 
         $validator = Validator::make($userArray, [
             'name'      => 'required|max:255|min:2',
             'email'     => 'required|email|unique:App\Models\User,email',
+            'password'  => 'required|min:8'
         ]);
 
         return $validator;
@@ -59,6 +61,10 @@ class UserValidator extends BaseValidator
             $userArray["email"]  = $userDto->email;
         }
 
+        if(!is_null($userDto->password)) {
+            $validators["password"] = "min:8";
+            $userArray["password"]  = $userDto->password;
+        }
         $validator = Validator::make($userArray, $validators);
 
         return $validator;
