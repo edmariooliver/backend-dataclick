@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             'email' => "marrios@gmail.com",
             'password' => Hash::make('password'),
             'email_verified_at' => date("Y-m-d H:m:s"),
+            'created_at' => date("Y-m-d H:m:s")
         ]);
 
         DB::table('status_signatures')->insert([
