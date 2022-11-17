@@ -60,25 +60,6 @@ class DatabaseSeeder extends Seeder
             "name" => "Team Todo Mole",
             'created_at' => date("Y-m-d H:m:s")
         ]);
-
-        DB::table('signatures')->insert([
-            "id_club" => "1",
-            "id_user" => "1",
-            "status_signature" => "2",
-        ]);
-
-        DB::table('signatures')->insert([
-            "id_club" => "2",
-            "id_user" => "1",
-            "status_signature" => "1",
-        ]);
-
-        DB::table('signatures')->insert([
-            "id_club" => "3",
-            "id_user" => "1",
-            "status_signature" => "3",
-        ]);
-
         
         DB::table('status_invoices')->insert([
             "description" => "PENDENTE"
