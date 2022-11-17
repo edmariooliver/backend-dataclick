@@ -5,6 +5,7 @@ namespace App\Services\Invoice;
 use App\Exceptions\InvoiceNotFoundException;
 use App\Models\Invoice;
 use App\Repositories\InvoiceRepository;
+use App\Exceptions\InvoicePaidException;
 
 class PayInvoiceService
 {
@@ -32,11 +33,11 @@ class PayInvoiceService
         }
 
         if($invoice->status == Invoice::STATUS_INVOICE_PAID) {
-            return ["errors"=>"A fatura já esta paga!"];
+            throw new InvoicePaidException(["errors"=>"A fatura já esta paga!"]);
         }
 
         if(count($this->repository->findPendingInvoices($invoice->due_date, $invoice->id_signature)) > 0) {
-            return ["errors"=>"Você possui faturas antigas pendentes!"];
+            throw new InvoicePaidException(["errors"=>"Você possui faturas antigas pendentes!"]);
         }
 
         if ($this->repository->update($id, ["status" => 2])) {
