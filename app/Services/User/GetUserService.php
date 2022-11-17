@@ -49,11 +49,13 @@ class GetUserService
      */
     public function findById(int $id)
     {
+        $user = $this->userRepository->findById($id);
+        
+        if($user == null) {
+            return $user;
+        }
+
         return [
-            $this->userRepository->findById($id), 
-                [
-                "signatures" => $this->signatureRepository->findByUserId($id)
-                ]
-            ];
+            $user, ["signatures" => $this->signatureRepository->findByUserId($id)]];
     }
 }
