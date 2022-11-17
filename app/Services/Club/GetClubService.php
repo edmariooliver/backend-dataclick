@@ -50,6 +50,10 @@ class GetClubService
     public function findById(int $id)
     {
         $club = $this->clubRepository->findById($id);
+        if($club == null) {
+            return $club;
+        }
+
         return [$club, ['signatures' => $this->signatureRepository->findByClubId($id)]];
     }
 }
