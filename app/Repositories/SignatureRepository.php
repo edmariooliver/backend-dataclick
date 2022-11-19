@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Invoice;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Models\Signature;
 
@@ -107,9 +108,19 @@ class SignatureRepository implements RepositoryInterface
     {
         return $this->entity
             ->where("id_user", $userId)
-            ->join("clubs", "signatures.id_club", "clubs.id")
-            ->join("status_signatures", "status_signatures.id", "signatures.status_signature")
-            ->select("signatures.*", "status_signatures.description as status_signature", "clubs.name as clubname")
             ->get();
+    }
+
+    /**
+     * 
+     */
+    public function checkStatusSignatureDefaulter()
+    {
+        return $this->entity
+            ->select("*")
+            ->join("invoices as inv", "inv.id_signature", "signatures.id")
+            ->where("inv.status", "=", Invoice::STATUS_INVOICE_DUE)
+            ->groupBy("inv.id")
+            ->update(["signatures.status_signature" => Signature::STATUS_SIGNATURE_DEFAULTER]);
     }
 }

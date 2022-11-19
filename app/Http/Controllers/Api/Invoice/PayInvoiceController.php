@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\Invoice\PayInvoiceService;
 use Illuminate\Http\Request;
 
-class PayController extends Controller
+class PayInvoiceController extends Controller
 {
     protected PayInvoiceService $service;
 
@@ -18,6 +18,6 @@ class PayController extends Controller
 
     public function pay(Request $request)
     {
-        return Response()->json($this->service->execute($request->id), 200);
+        return Response()->json([$this->service->execute($request->id)], 200);
     }
 }

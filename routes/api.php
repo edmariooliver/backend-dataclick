@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\User\{
     GetUserController,
     DestroyUserController,
     UpdateUserController, 
-    CreateUserController
+    CreateUserController,
 };
 use App\Http\Controllers\Auth\{
     LoginController,
@@ -25,12 +25,12 @@ use App\Http\Controllers\Api\Signature\{
     GetSignatureController,
     DestroySignatureController,
     UpdateSignatureController, 
-    CreateSignatureController
+    CreateSignatureController,
+    CheckSignaturesController
 };
-
 use App\Http\Controllers\Api\Invoice\{
-    PayController,
-
+    PayInvoiceController,
+    CheckInvoicesController
 };
 
 // ===============================================
@@ -54,10 +54,13 @@ Route::patch("club/{id}",       [UpdateClubController::class, "update"]);
 Route::delete("club/{id}",      [DestroyClubController::class, "destroy"]);
 Route::post("club",             [CreateClubController::class, "create"]);
 
+Route::get("signature/checkAll",     [CheckSignaturesController::class, "index"]);
 Route::get("signature/{id}",         [GetSignatureController::class, "findById"]);
 Route::get("signature",              [GetSignatureController::class, "findAll"]);
 Route::patch("signature/{id}",       [UpdateSignatureController::class, "update"]);
 Route::delete("signature/{id}",      [DestroySignatureController::class, "destroy"]);
 Route::post("signature",             [CreateSignatureController::class, "create"]);
 
-Route::post("invoice/pay/{id}",      [PayController::class, "pay"]);
+Route::post("invoice/pay/{id}",      [PayInvoiceController::class, "pay"]);
+Route::get("invoice/checkAll",       [CheckInvoicesController::class, "index"]);
+

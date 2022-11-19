@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Invoice;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Models\User;
 
@@ -63,4 +64,5 @@ class UserRepository implements RepositoryInterface
     {
         return $this->entity->create($user);
     }
+
 }

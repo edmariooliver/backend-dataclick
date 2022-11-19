@@ -50,7 +50,7 @@ class InvoiceRepository implements RepositoryInterface
      */
     public function update(int $id, Array $invoice)
     {
-        if($this->entity->find($id) == NULl) {
+        if($this->entity->find($id) == NULL) {
             return false;
         }
         return $this->entity->where("id", $id)->update($invoice);
@@ -86,5 +86,19 @@ class InvoiceRepository implements RepositoryInterface
             ->where("due_date", "<", $date)
             ->where("status", Invoice::STATUS_INVOICE_PENDING)
             ->get();
+    }
+
+    /**
+     * 
+     */
+    public function updateInvoicesStatusDue(String $date)
+    {
+        if($date == NULL) {
+            return false;
+        }
+        return $this->entity
+            ->where("due_date", '<', $date)
+            ->where("status", "=", Invoice::STATUS_INVOICE_PENDING)
+            ->update(['status' => Invoice::STATUS_INVOICE_DUE]);
     }
 }
