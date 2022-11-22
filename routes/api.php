@@ -51,7 +51,6 @@ Route::group([
     Route::get("signature/checkAll",     [CheckSignaturesController::class, "index"]);
     Route::get("signature/{id}",         [GetSignatureController::class, "findById"]);
     Route::get("signature",              [GetSignatureController::class, "findAll"]);
-    Route::patch("signature/{id}",       [UpdateSignatureController::class, "update"]);
     Route::delete("signature/{id}",      [DestroySignatureController::class, "destroy"]);
     Route::post("signature",             [CreateSignatureController::class, "create"]);
     
