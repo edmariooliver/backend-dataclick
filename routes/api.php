@@ -60,11 +60,9 @@ Route::group([
     
     Route::post('logout',       [LogoutController::class, "index"]);
     Route::post('refresh',      [RefreshController::class, "index"]);
-    Route::get('me',           [MeController::class, "index"]);
+    Route::get('me',            [MeController::class, "index"]);
     Route::post("user",         [CreateUserController::class, "create"]);
 });
 
 Route::post('auth/login',   [LoginController::class, "index"]);
 Route::post('register',     [RegisterController::class, "create"]);
-
-
