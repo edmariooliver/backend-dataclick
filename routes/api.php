@@ -36,7 +36,6 @@ use App\Http\Controllers\Api\Invoice\{
 // ===============================================
 Route::group([
     'middleware' => 'auth.jwt',
-    'prefix' => 'auth'
 ], function ($router) {
     Route::get("user/{id}",         [GetUserController::class, "findById"]);
     Route::get("user",              [GetUserController::class, "findAll"]);
