@@ -60,7 +60,7 @@ Route::group([
     
     Route::post('logout',       [LogoutController::class, "index"]);
     Route::post('refresh',      [RefreshController::class, "index"]);
-    Route::post('me',           [MeController::class, "index"]);
+    Route::get('me',           [MeController::class, "index"]);
     Route::post("user",         [CreateUserController::class, "create"]);
 });
 
