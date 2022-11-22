@@ -33,6 +33,13 @@ class UserRepository implements RepositoryInterface
     /**
      * 
      */
+    public function findByEmail($email)
+    {
+        return $this->entity->where("email", $email)->first();
+    }
+    /**
+     * 
+     */
     public function findAll()
     {
         return $this->entity->select("*")->get();
