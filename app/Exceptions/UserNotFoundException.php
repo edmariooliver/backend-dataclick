@@ -8,7 +8,7 @@ class UserNotFoundException extends Exception
 {
     public function render() {
         return response()->json([
-            'message' => 'User not found'
+            'message' => 'Usuário não encontrado!'
         ], 404);
     }
 }

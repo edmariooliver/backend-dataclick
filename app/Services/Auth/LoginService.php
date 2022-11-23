@@ -3,6 +3,7 @@
 namespace App\Services\Auth;
 
 use App\Exceptions\UnauthorizedException;
+use App\Exceptions\UserNotFoundException;
 use App\Utils\JWTUtils;
 use App\Repositories\UserRepository;
 
@@ -19,6 +20,10 @@ class LoginService
     {
         $user = $this->repository->findByEmail($credentials['email']);
         
+        if($user == null) {
+            throw new UserNotFoundException();
+        }
+
         if(!$user->admin) {
             throw new UnauthorizedException();
         }

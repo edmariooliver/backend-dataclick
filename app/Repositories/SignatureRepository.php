@@ -112,7 +112,7 @@ class SignatureRepository implements RepositoryInterface
             ->join("status_signatures", "status_signatures.id", "signatures.status_signature")
             ->where("users.id", $userId)
             ->select("signatures.id", "users.name as user", "clubs.name as club", "status_signatures.description as status")
-            ->first();
+            ->get();
     }
 
     /**
