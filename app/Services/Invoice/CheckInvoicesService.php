@@ -23,6 +23,6 @@ class CheckInvoicesService
      */
     public function execute()
     {
-        $this->repository->updateInvoicesStatusDue(date("2022-12-29"));
+        $this->repository->updateInvoicesStatusDue(date("Y-m-d"));
     }
 }
