@@ -33,7 +33,7 @@ class PayInvoiceService
         }
 
         if($invoice->status == Invoice::STATUS_INVOICE_PAID) {
-            throw new InvoicePaidException(["errors"=>"A fatura já esta paga!"]);
+            throw new InvoicePaidException(["errors"=>"A fatura já está paga!"]);
         }
 
         if(count($this->repository->findPendingInvoices($invoice->due_date, $invoice->id_signature)) > 0) {
