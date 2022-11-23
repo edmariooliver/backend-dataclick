@@ -23,6 +23,8 @@ class CheckSignaturesService
      */
     public function execute()
     {
+        $this->repository->checkStatusSignatureActive();
         $this->repository->checkStatusSignatureDefaulter();
+        // $this->repository->checkStatusSignatureInactive();
     }
 }

@@ -27,7 +27,9 @@ class UserRepository implements RepositoryInterface
      */
     public function findById($id)
     {
-        return $this->entity->where("id", $id)->first();
+        return $this->entity->where("id", $id)
+                    ->where("admin", NULL)
+                    ->first();
     }
 
     /**
@@ -35,14 +37,18 @@ class UserRepository implements RepositoryInterface
      */
     public function findByEmail($email)
     {
-        return $this->entity->where("email", $email)->first();
+        return $this->entity->where("email", $email)
+                    ->where("admin", NULL)
+                    ->first();
     }
     /**
      * 
      */
     public function findAll()
     {
-        return $this->entity->select("*")->get();
+        return $this->entity->select("*")
+                    ->where("admin", NULL)
+                    ->get();
     }
 
     /**

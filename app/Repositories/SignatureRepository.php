@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Models\Invoice;
 use App\Repositories\Contracts\RepositoryInterface;
 use App\Models\Signature;
+use Illuminate\Support\Facades\DB;
 
 class SignatureRepository implements RepositoryInterface
 {
@@ -127,4 +128,20 @@ class SignatureRepository implements RepositoryInterface
             ->groupBy("inv.id")
             ->update(["signatures.status_signature" => Signature::STATUS_SIGNATURE_DEFAULTER]);
     }
+
+    /**
+     * 
+     */
+    public function checkStatusSignatureActive()
+    {
+        $result = $this->entity
+            ->selectRaw("count(inv.id) as invoices_count, signatures.id as id")
+            ->join("invoices as inv", "inv.id_signature", "signatures.id")
+            ->whereRaw("inv.status = " . Invoice::STATUS_INVOICE_PAID)
+            ->orWhereRaw("inv.status = " . Invoice::STATUS_INVOICE_PENDING)
+            ->havingRaw("invoices_count = 12")
+            ->groupBy("signatures.id")
+            ->update(["signatures.status_signature" => Signature::STATUS_SIGNATURE_ACTIVE]);
+            // dd($result);
+        }
 }

@@ -8,16 +8,18 @@ use Illuminate\Http\Request;
 
 class PayInvoiceController extends Controller
 {
-    protected PayInvoiceService $service;
+    protected PayInvoiceService $payInvoiceService;
 
     public function __construct(PayInvoiceService $payInvoiceService)
     {
-        $this->service = $payInvoiceService;
+        $this->payInvoiceService = $payInvoiceService;
     }
-
 
     public function pay(Request $request)
     {
-        return Response()->json([$this->service->execute($request->id)], 200);
+        
+        $this->payInvoiceService->execute($request->id);
+        return Response()->json(["Fatura paga com sucesso!"], 200);
+        
     }
 }

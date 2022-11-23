@@ -40,6 +40,10 @@ class PayInvoiceService
             throw new InvoicePaidException(["errors"=>"Você possui faturas antigas pendentes!"]);
         }
 
+        if(count($this->repository->findDueInvoices($invoice->due_date, $invoice->id_signature)) > 0) {
+            throw new InvoicePaidException(["errors"=>"Você possui faturas antigas vencidas!"]);
+        }
+
         if ($this->repository->update($id, ["status" => 2])) {
             return "Fatura paga com sucesso!";
         }

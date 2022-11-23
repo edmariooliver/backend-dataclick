@@ -87,6 +87,16 @@ class InvoiceRepository implements RepositoryInterface
             ->where("status", Invoice::STATUS_INVOICE_PENDING)
             ->get();
     }
+    public function findDueInvoices(String $date, Int $idSignature) 
+    {
+        return $this->entity
+            ->select("invoices.*", "status_invoices.description as status")
+            ->join("status_invoices", "status_invoices.id", "invoices.status")
+            ->where("id_signature", $idSignature)
+            ->where("due_date", "<", $date)
+            ->where("status", Invoice::STATUS_INVOICE_DUE)
+            ->get();
+    }
 
     /**
      * 
