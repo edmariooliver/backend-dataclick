@@ -34,7 +34,6 @@ use App\Http\Controllers\Api\Invoice\{
 };
 
 // ===============================================
-Route::get("signature/checkAll",     [CheckSignaturesController::class, "index"]);
 Route::group([
     'middleware' => 'auth.jwt',
 ], function ($router) {
@@ -49,6 +48,7 @@ Route::group([
     Route::delete("club/{id}",      [DestroyClubController::class, "destroy"]);
     Route::post("club",             [CreateClubController::class, "create"]);
     
+    Route::get("signature/checkAll",     [CheckSignaturesController::class, "index"]);
     Route::get("signature/{id}",         [GetSignatureController::class, "findById"]);
     Route::get("signature",              [GetSignatureController::class, "findAll"]);
     Route::delete("signature/{id}",      [DestroySignatureController::class, "destroy"]);
