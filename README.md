@@ -66,6 +66,9 @@ Volte um diretório
 ```bash
 cd ..
 ```
+```bash
+cd frontend-dataclick/
+```
 Instale as dependências
 ```bash
 npm install
