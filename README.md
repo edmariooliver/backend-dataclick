@@ -66,7 +66,7 @@ Volte um diretório
 ```bash
 cd ..
 ```
-
+Instale as dependências
 ```bash
 npm install
 ```
