@@ -77,3 +77,7 @@ npm install
 ```bash
 npm run dev
 ```
+
+<hr>
+
+O arquivo de collection do postman está no projeto também! 
