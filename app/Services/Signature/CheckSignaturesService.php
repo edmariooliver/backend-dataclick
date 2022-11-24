@@ -25,6 +25,5 @@ class CheckSignaturesService
     {
         $this->repository->checkStatusSignatureActive();
         $this->repository->checkStatusSignatureDefaulter();
-        // $this->repository->checkStatusSignatureInactive();
     }
 }
