@@ -81,3 +81,4 @@ npm run dev
 <hr>
 
 O arquivo de collection do Postman está no projeto também! 
+[Collection](https://github.com/edmariooliver/backend-dataclick/blob/master/Gosto%20muito%20de%20vodka.postman_collection.json)
