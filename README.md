@@ -80,4 +80,4 @@ npm run dev
 
 <hr>
 
-O arquivo de collection do postman está no projeto também! 
+O arquivo de collection do Postman está no projeto também! 
