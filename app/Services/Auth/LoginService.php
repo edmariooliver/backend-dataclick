@@ -18,7 +18,7 @@ class LoginService
 
     public function execute(Array $credentials)
     {
-        $user = $this->repository->findByEmail($credentials['email']);
+        $user = $this->repository->findByEmailLogin($credentials['email']);
         
         if($user == null) {
             throw new UserNotFoundException();

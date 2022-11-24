@@ -35,10 +35,10 @@ class UserRepository implements RepositoryInterface
     /**
      * 
      */
-    public function findByEmail($email)
+    public function findByEmailLogin($email)
     {
         return $this->entity->where("email", $email)
-                    ->where("admin", NULL)
+                    ->where("admin", 1)
                     ->first();
     }
     /**
